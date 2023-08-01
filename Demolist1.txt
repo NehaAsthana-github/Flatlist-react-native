@@ -1,0 +1,115 @@
+import React, { useState } from "react";
+
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
+
+const Demolist = () => {
+
+    const item = [
+        { id: 1, value: 0 },
+        { id: 2, value: 0 },
+        { id: 3, value: 0 },
+        { id: 4, value: 0 },
+        { id: 5, value: 0 },
+        { id: 6, value: 0 },
+        { id: 7, value: 0 },
+        { id: 8, value: 0 },
+        { id: 9, value: 0 },
+        { id: 10, value: 0 },
+        { id: 11, value: 0 },
+        { id: 12, value: 0 },
+        { id: 13, value: 0 },
+        { id: 14, value: 0 },
+        { id: 15, value: 0 },
+        { id: 16, value: 0 },
+        { id: 17, value: 0 },
+        { id: 18, value: 0 },
+        { id: 19, value: 0 },
+        { id: 20, value: 0 },
+        { id: 21, value: 0 },
+        { id: 22, value: 0 },
+        { id: 23, value: 0 },
+ ]
+const [data,setData]=useState(item)
+const [refresh,setRefresh]=useState('')
+    
+    const incresevalue = (index) => {
+       
+        // // const newData = [...data];
+        // const temp=data;
+        // // const index = newData.findIndex((item) => item.id === id);
+        // if (index !== -1) {
+        //     newData[index].value += 1;
+        //     setData(newData);
+        //     setRefresh(Math.random())
+        // }
+
+        const temp=data;
+        temp[index].value=temp[index].value+1
+        setData(temp);
+            setRefresh(Math.random())
+        // const [newdata,setNewdata]=useState(item)
+        // if (item.id === id) {
+        //     return { ...item, value: item.value + 1 };
+        //     setNewdata(item)
+        //   }
+        //   return item
+    }
+    const decresevalue = (index) => {
+        // const newData = [...data];
+        // const index = newData.findIndex((item) => item.id === id);
+        // if (index !== -1) {
+        //     newData[index].value -= 1;
+        //     setData(newData);
+        //     setRefresh(Math.random())
+        // }
+        const temp=data;
+        temp[index].value=temp[index].value-1
+        setData(temp);
+            setRefresh(Math.random())
+    }
+
+    const render = ({ item,index }) => (<>
+    
+   
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 160, marginTop: 15 }}>
+
+            <Text style={{ top: 2 }}>item {item.id}</Text>
+            <TouchableOpacity
+
+                style={{ backgroundColor: 'lightgray', width: 25, height: 25, alignSelf: 'center', padding: 5 }}
+                onPress={() => incresevalue(index)}
+            >
+
+                <Text >+</Text>
+
+            </TouchableOpacity>
+            <Text style={{ top: 2 }}>{item.value}</Text>
+            <TouchableOpacity
+                style={{ backgroundColor: 'lightgray', width: 25, height: 25, alignSelf: 'center', padding: 5 }}
+                onPress={() => decresevalue(index)}
+            >
+                <Text >-</Text>
+            </TouchableOpacity>
+        </View>
+
+
+    </>
+    )
+
+    return (
+        <View>
+            <FlatList
+                data={data}
+                renderItem={render}
+                keyExtractor={(item) => item.id}
+            />
+        </View>
+    )
+}
+
+export default Demolist
+
+
+
+
